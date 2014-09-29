@@ -1,0 +1,2 @@
+Manifest-Version: 1.0
+Main-Class: main.java.pcgod01.rubiksolver.Main
