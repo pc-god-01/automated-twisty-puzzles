@@ -1,0 +1,18 @@
+dependancy tree
+
+solver  ->  puzzle
+        ->  move
+        
+puzzle  ->  piece
+        ->  move
+        
+piece   ->  color
+        ->  move
+        
+color
+move
+
+solver  ->  puzzle  ->  piece   ->  color
+                                ->  move
+                    ->  move
+        -> move

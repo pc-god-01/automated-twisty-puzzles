@@ -1,1 +1,8 @@
 src/main/java/pcgod01/rubiksolver/Main.java
+src/main/java/pcgod01/rubiksolver/Face.java
+src/main/java/pcgod01/rubiksolver/Piece.java
+src/main/java/pcgod01/rubiksolver/Color.java 
+src/main/java/pcgod01/rubiksolver/Move.java  
+src/main/java/pcgod01/rubiksolver/BadPieceException.java 
+
+src/main/java/pcgod01/rubiksolver/cube/CubeColor.java
