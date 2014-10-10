@@ -2,15 +2,16 @@ package main.java.pcgod01.rubiksolver;
 
 // todo override 'toString' method
 public abstract class Piece {
-    protected final Color[] colors;
+    protected final Color[]   colors;
+    protected final Validator validator;
     
-    protected Piece(int directions, Color[] colors) {
-        if (colors.length != directions) {
-            throw new IllegalArgumentException("'colors' should be of " +
-                                               "length 'directions'");
+    protected Piece(Color[] colors, Validator validator) {
+        if (!validator.isColorValid(colors)) {
+            throw new IllegalArgumentException("'colors' is not valid");
         }
         
         this.colors = colors;
+        this.validator = validator;
     }
     
     public abstract Piece rotate(Move move);
@@ -30,4 +31,5 @@ public abstract class Piece {
         int hash = 1;
         hash = hash * 17 + this.colors.hashCode();
         return hash;
+    }
 }

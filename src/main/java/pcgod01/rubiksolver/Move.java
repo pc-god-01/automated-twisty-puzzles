@@ -1,10 +1,16 @@
 package main.java.pcgod01.rubiksolver;
 
 public final class Move {
-    private final String key;
+    private final String  key;
+    private       String regex = null;
     
-    protected Move(String key) {
+    public Move(String key) {
+        this.regex = key.replace("*", "[2-9]?");
         this.key = key;
+    }
+
+    public String getKey() {
+        return this.key;
     }
     
     @Override
@@ -18,8 +24,20 @@ public final class Move {
         else if (!(o instanceof Move)) return false;
         
         Move move = (Move) o;
-        
-        return move.key.equals(this.key);
+
+        if (move.regex.equals(move.key)) {
+            if (this.regex.equals(this.key)) {
+                return this.key.equals(move.key);
+            }
+
+            return move.key.matches(this.regex);
+        } else {
+            if (this.regex.equals(this.key)) {
+                return this.key.matches(move.regex);
+            }
+
+            return this.key.equals(move.key);
+        }
     }
     
     @Override
