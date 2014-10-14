@@ -1,8 +1,10 @@
-package main.java.pcgod01.rubiksolver;
+package main.java.pcgod01.puzzle;
+
+import java.util.Arrays;
 
 // todo override 'toString' method
-public abstract class Piece {
-    protected final Color[]   colors;
+public abstract class Piece implements Cloneable {
+    protected       Color[]   colors;
     protected final Validator validator;
     
     protected Piece(Color[] colors, Validator validator) {
@@ -23,7 +25,8 @@ public abstract class Piece {
         
         Piece piece = (Piece) o;
         
-        return piece.colors.equals(this.colors);
+        return Arrays.equals(piece.colors, this.colors) &&
+               piece.validator == this.validator;
     }
     
     @Override
@@ -31,5 +34,12 @@ public abstract class Piece {
         int hash = 1;
         hash = hash * 17 + this.colors.hashCode();
         return hash;
+    }
+
+    @Override
+    public abstract Object clone();
+    ////////// TEMPORARY
+    public Color getColor(int index) {
+        return this.colors[index];
     }
 }

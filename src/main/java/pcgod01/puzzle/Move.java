@@ -1,6 +1,6 @@
-package main.java.pcgod01.rubiksolver;
+package main.java.pcgod01.puzzle;
 
-public final class Move {
+public final class Move implements Cloneable {
     private final String  key;
     private       String regex = null;
     
@@ -21,23 +21,14 @@ public final class Move {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        else if (!(o instanceof Move)) return false;
+        if (!(o instanceof Move)) return false;
         
         Move move = (Move) o;
 
-        if (move.regex.equals(move.key)) {
-            if (this.regex.equals(this.key)) {
-                return this.key.equals(move.key);
-            }
-
-            return move.key.matches(this.regex);
-        } else {
-            if (this.regex.equals(this.key)) {
-                return this.key.matches(move.regex);
-            }
-
-            return this.key.equals(move.key);
-        }
+        if (move.regex.equals(this.regex)) return true;
+        if (move.key.equals(this.key)) return true;
+        return move.key.matches(this.regex) ||
+               this.key.matches(move.regex);
     }
     
     @Override
@@ -45,5 +36,10 @@ public final class Move {
         int hash = 1;
         hash = hash * 23 + key.hashCode();
         return hash;
+    }
+
+    @Override
+    public Object clone() {
+        return new Move(this.key);
     }
 }

@@ -23,12 +23,10 @@ long_line_behaviour=1
 long_line_column=72
 
 [files]
-current_page=0
-FILE_NAME_0=4697;Java;0;EUTF-8;0;1;1;%2Fhome%2Ffesmifhsofhp%2Frubik_solver%2Fsrc%2Fmain%2Fjava%2Fpcgod01%2Frubiksolver%2Fcube%2FCube.java;0;4
-FILE_NAME_1=209;Java;0;EUTF-8;0;1;1;%2Fhome%2Ffesmifhsofhp%2Frubik_solver%2Fsrc%2Fmain%2Fjava%2Fpcgod01%2Frubiksolver%2FPiece.java;0;4
-FILE_NAME_2=313;Java;0;EUTF-8;0;1;1;%2Fhome%2Ffesmifhsofhp%2Frubik_solver%2Fsrc%2Fmain%2Fjava%2Fpcgod01%2Frubiksolver%2Fcube%2FCubePiece.java;0;4
-FILE_NAME_3=776;Java;0;EUTF-8;0;1;1;%2Fhome%2Ffesmifhsofhp%2Frubik_solver%2Fsrc%2Fmain%2Fjava%2Fpcgod01%2Frubiksolver%2FValidator.java;0;4
-FILE_NAME_4=213;Java;0;EUTF-8;0;1;1;%2Fhome%2Ffesmifhsofhp%2Frubik_solver%2Fsrc%2Fmain%2Fjava%2Fpcgod01%2Frubiksolver%2FPuzzle.java;0;4
+current_page=2
+FILE_NAME_0=782;Java;0;EUTF-8;0;1;1;%2Fhome%2Ffesmifhsofhp%2Frubik_solver%2Fsrc%2Fmain%2Fjava%2Fpcgod01%2Frubiksolver%2FMain.java;0;4
+FILE_NAME_1=2179;Java;0;EUTF-8;0;1;1;%2Fhome%2Ffesmifhsofhp%2Frubik_solver%2Fsrc%2Fmain%2Fjava%2Fpcgod01%2Frubiksolver%2Fcube%2FCube.java;0;4
+FILE_NAME_2=2384;Java;0;EUTF-8;0;1;1;%2Fhome%2Ffesmifhsofhp%2Frubik_solver%2Fsrc%2Fmain%2Fjava%2Fpcgod01%2Frubiksolver%2Fcube%2FCubePiece.java;0;4
 
 [VTE]
 last_dir=/home/fesmifhsofhp

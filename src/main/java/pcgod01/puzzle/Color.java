@@ -1,6 +1,6 @@
-package main.java.pcgod01.rubiksolver;
+package main.java.pcgod01.puzzle;
 
-public class Color {
+public class Color implements Cloneable {
     private final String name;
     
     public Color(String name) {
@@ -27,5 +27,10 @@ public class Color {
         int hash = 1;
         hash = hash * 31 + this.name.hashCode();
         return hash;
+    }
+
+    @Override
+    public Object clone() {
+        return new Color(this.name);
     }
 }

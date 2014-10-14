@@ -1,11 +1,10 @@
-package main.java.pcgod01.rubiksolver;
+package main.java.pcgod01.puzzle;
 
 public abstract class Puzzle {
-    private final int sideLength;
+    protected final int sideLength;
     
     protected Puzzle(int sideLength) {
         this.sideLength = sideLength;
-        this.initPieces();
     }
     
     public int getSideLength() {
@@ -13,5 +12,4 @@ public abstract class Puzzle {
     }
     
     public abstract Puzzle applyMove(Move move);
-    public abstract void initPieces();
 }

@@ -1,11 +1,9 @@
 package main.java.pcgod01.rubiksolver;
 
+import main.java.pcgod01.puzzle.cube.Cube;
+
 public class Main {
 	public static final void main(String[] args) {
-		if(args.length < 1) {
-			throw new IllegalArgumentException("Needs path to cube file");
-		}
-		
-		String scrambledPath = args[0];
+        //TODO stuff
 	}
 }
