@@ -1,18 +1,26 @@
 dependancy tree
 
-solver  ->  puzzle
-        ->  move
+repeater    ->  puzzle
+            ->  move
+
+solver      ->  puzzle
+            ->  move
         
-puzzle  ->  piece
-        ->  move
+puzzle      ->  piece
+            ->  move
         
-piece   ->  color
-        ->  move
+piece       ->  color
+            ->  move
         
 color
 move
 
-solver  ->  puzzle  ->  piece   ->  color
-                                ->  move
-                    ->  move
-        -> move
+repeater    ->  puzzle  ->  piece   ->  color
+            |           |           ->  move
+            |           ->  move
+            ->  move
+
+solver      ->  puzzle  ->  piece   ->  color
+            |           |           ->  move
+            |           ->  move
+            ->  move

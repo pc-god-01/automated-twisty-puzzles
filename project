@@ -24,16 +24,16 @@ long_line_column=72
 
 [files]
 current_page=2
-FILE_NAME_0=782;Java;0;EUTF-8;0;1;1;%2Fhome%2Ffesmifhsofhp%2Frubik_solver%2Fsrc%2Fmain%2Fjava%2Fpcgod01%2Frubiksolver%2FMain.java;0;4
-FILE_NAME_1=2179;Java;0;EUTF-8;0;1;1;%2Fhome%2Ffesmifhsofhp%2Frubik_solver%2Fsrc%2Fmain%2Fjava%2Fpcgod01%2Frubiksolver%2Fcube%2FCube.java;0;4
-FILE_NAME_2=2384;Java;0;EUTF-8;0;1;1;%2Fhome%2Ffesmifhsofhp%2Frubik_solver%2Fsrc%2Fmain%2Fjava%2Fpcgod01%2Frubiksolver%2Fcube%2FCubePiece.java;0;4
+FILE_NAME_0=1035;Java;0;EUTF-8;0;1;1;%2Fhome%2Ffesmifhsofhp%2Frubik_solver%2Fsrc%2Fmain%2Fjava%2Fpcgod01%2Fpuzzle%2FPuzzle.java;0;4
+FILE_NAME_1=2726;Java;0;EUTF-8;0;1;1;%2Fhome%2Ffesmifhsofhp%2Frubik_solver%2Fsrc%2Fmain%2Fjava%2Fpcgod01%2Fpuzzle%2Fcube%2FCube.java;0;4
+FILE_NAME_2=193;Sh;0;EUTF-8;0;1;1;%2Fhome%2Ffesmifhsofhp%2Frubik_solver%2Fdocs.sh;0;4
 
 [VTE]
-last_dir=/home/fesmifhsofhp
+last_dir=/home/fesmifhsofhp/rubik_solver
 
 [build-menu]
 EX_00_LB=_Execute
-EX_00_CM=java "main/java/pcgod01/rubiksolver/Main" ../res/cube_file.xml
+EX_00_CM=java "main/java/pcgod01/repeat/Main"
 EX_00_WD=%p/out
 JavaFT_00_LB=_Compile
 JavaFT_00_CM=javac -d out @file_list

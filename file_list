@@ -1,4 +1,5 @@
-src/main/java/pcgod01/rubiksolver/Main.java
+src/main/java/pcgod01/repeat/Main.java
+src/main/java/pcgod01/solve/Main.java
 
 src/main/java/pcgod01/puzzle/Color.java 
 src/main/java/pcgod01/puzzle/Piece.java
@@ -8,3 +9,5 @@ src/main/java/pcgod01/puzzle/Validator.java
 
 src/main/java/pcgod01/puzzle/cube/Cube.java
 src/main/java/pcgod01/puzzle/cube/CubePiece.java
+
+src/main/java/pcgod01/repeat/Repeater.java
