@@ -22,12 +22,14 @@ package main.java.pcgod01.repeat;
 import main.java.pcgod01.puzzle.Move;
 import main.java.pcgod01.puzzle.Puzzle;
 import main.java.pcgod01.puzzle.cube.Cube;
+import main.java.pcgod01.io.XMLLoader;
 
 public final class Main {
-    private final static String USAGE = "Usage: repeat move-file puzzle-file";
-    
+    private final static String USAGE = "Usage: repeat move-file [puzzle-file]";
+
+    // TODO options
     public static void main(String[] args) {
-        if (args.length != 2) {
+        if (args.length < 1 || args.length > 2) {
             System.err.println(USAGE);
             System.exit(1);
         }
@@ -38,14 +40,21 @@ public final class Main {
                 System.exit(1);
             }
         }
-        // TODO Load move file
-        Move[] moves = new Move[] {new Move("R'"), new Move("U"),
-                                   new Move("R"), new Move("U'")};
+
+        XMLLoader loader = new XMLLoader(args[0]);
+        Move[] moves = loader.getMoveSequence();
+
+        if (args.length == 2 && !args[1].isEmpty()) {
+            loader.close();
+        }
+        
         // TODO Load puzzle class
         Puzzle puzzle = new Cube(3);
         // TODO Calclate result
         int repeats = Repeater.getRepeats(puzzle, moves);
+
         System.out.println(repeats);
+        loader.close();
         System.exit(0);
     }
 }

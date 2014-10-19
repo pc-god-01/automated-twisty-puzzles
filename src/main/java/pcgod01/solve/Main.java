@@ -7,9 +7,6 @@ import main.java.pcgod01.repeat.Repeater;
 
 public class Main {
 	public static final void main(String[] args) {
-        Move[] moves = new Move[] {new Move("x"), new Move("U"),
-                                   new Move("R'"), new Move("U'")};
-        Puzzle cube = new Cube(3);
-        System.out.println(Repeater.getRotation(cube, moves));
+        //todo stuff
 	}
 }

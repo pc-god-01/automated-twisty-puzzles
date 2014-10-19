@@ -1,0 +1,28 @@
+<root>
+    <move-sequence>
+        <!-- Common finger trick -->
+        <move key = "R"/>
+        <move key = "U"/>
+        <move key = "R'"/>
+        <move key = "U'"/>
+    </move-sequence>
+    
+    <move-sequence>
+        <!-- Common finger trick -->
+        <move key = "R"/>
+        <move key = "U"/>
+        <move key = "R'"/>
+        <move key = "U"/>
+        <move key = "R"/>
+        <move key = "U2"/>
+        <move key = "R'"/>
+    </move-sequence>
+    
+    <move-sequence>
+        <!-- Common finger trick -->
+        <move key = "R"/>
+        <move key = "F'"/>
+        <move key = "R'"/>
+        <move key = "F"/>
+    </move-sequence>
+</root>
