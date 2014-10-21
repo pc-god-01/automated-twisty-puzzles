@@ -1,4 +1,8 @@
 <root>
+    <puzzle-builder class = "main.java.pcgod01.puzzle.cube.Builder">
+        <args sideLength = "3"/>
+    </puzzle-builder>
+    
     <move-sequence>
         <!-- Common finger trick -->
         <move key = "R"/>
@@ -24,5 +28,17 @@
         <move key = "F'"/>
         <move key = "R'"/>
         <move key = "F"/>
+    </move-sequence>
+
+    <move-sequence>
+        <!-- test -->
+        <move key = "R"/>
+        <move key = "U"/>
+        <move key = "R'"/>
+        <move key = "U'"/>
+        <move key = "R"/>
+        <move key = "U'"/>
+        <move key = "R'"/>
+        <move key = "U"/>
     </move-sequence>
 </root>

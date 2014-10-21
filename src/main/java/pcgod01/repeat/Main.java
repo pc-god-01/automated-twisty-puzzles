@@ -25,34 +25,90 @@ import main.java.pcgod01.puzzle.cube.Cube;
 import main.java.pcgod01.io.XMLLoader;
 
 public final class Main {
-    private final static String USAGE = "Usage: repeat move-file [puzzle-file]";
+    private final static String USAGE = "Usage: repeat <options> <move-file> [puzzle-file]\n"
+    + "use -h for a list of possible options";
 
-    // TODO options
+    private final static String HELP = "Usage: repeat <options> <move-file> [puzzle-file]\n"
+    + "where possible options include:\n"
+    + "  -h         Print a sysnopsis of standard options\n"
+    + "  -help      Synonymous to -h\n"
+    + "  -m <index> Index of move in file\n"
+    + "  -p <index> Index of puzzle in file\n"
+    + "  -o <file>  Output file\n";
+
     public static void main(String[] args) {
-        if (args.length < 1 || args.length > 2) {
-            System.err.println(USAGE);
+        if (args.length < 1) {
+            System.err.println(Main.HELP);
             System.exit(1);
         }
 
-        for (String command : args) {
-            if (command.isEmpty()) {
-                System.err.println(USAGE);
-                System.exit(1);
+        int index = 0;
+        int moveIndex = 0;
+        int puzzleIndex = 0;
+        String outPath = "";
+        boolean sameFile = true;
+
+        try {
+            while (args[index].startsWith("-")) {
+                switch(args[index]) {
+                    case "-o":
+                        outPath = args[index + 1];
+                        index += 2;
+                        break;
+                    case "-m":
+                        moveIndex = Integer.parseInt(args[index + 1]);
+                        index += 2;
+                        break;
+                    case "-p":
+                        puzzleIndex = Integer.parseInt(args[index + 1]);
+                        index += 2;
+                        break;
+                    case "-help": // FALLTHROUGH
+                    case "-h":
+                        System.out.println(Main.HELP);
+                        System.exit(0);
+                        break;
+                    default:
+                        System.err.println("repeat: invalid flag: " + args[0]);
+                        System.err.println(Main.USAGE);
+                        System.exit(1);
+                }
             }
-        }
-
-        XMLLoader loader = new XMLLoader(args[0]);
-        Move[] moves = loader.getMoveSequence();
-
-        if (args.length == 2 && !args[1].isEmpty()) {
-            loader.close();
+        } catch (ArrayIndexOutOfBoundsException | NumberFormatException e) {
+            System.err.println(Main.USAGE);
+            System.exit(1);
         }
         
-        // TODO Load puzzle class
-        Puzzle puzzle = new Cube(3);
-        // TODO Calclate result
+        int count = args.length - index;
+
+        if (count < 1 || count > 2) {
+            System.err.println(Main.USAGE);
+            System.exit(1);
+        } else if (count == 2) {
+            sameFile = false;
+        }
+
+        XMLLoader loader = new XMLLoader(args[index]);
+        Move[] moves = loader.getMoveSequence(moveIndex);
+
+        if (!sameFile) {
+            loader.close();
+            loader = new XMLLoader(args[index + 1]);
+        }
+        
+        Puzzle puzzle = loader.getPuzzle(puzzleIndex);
+
+        if (puzzle == null) {
+            System.err.println("failed to load puzzle");
+            System.exit(1);
+        }
+        
         int repeats = Repeater.getRepeats(puzzle, moves);
 
+        if (!outPath.isEmpty()) {
+            // TODO output xml
+        }
+        
         System.out.println(repeats);
         loader.close();
         System.exit(0);

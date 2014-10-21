@@ -23,10 +23,9 @@ long_line_behaviour=1
 long_line_column=72
 
 [files]
-current_page=2
-FILE_NAME_0=626;XML;0;EUTF-8;0;1;1;%2Fhome%2Ffesmifhsofhp%2Frubik_solver%2Fres%2Fmoves.xml;0;4
-FILE_NAME_1=55;Sh;0;EUTF-8;0;1;1;%2Fhome%2Ffesmifhsofhp%2Frubik_solver%2Frepeat.sh;0;4
-FILE_NAME_2=1619;Java;0;EUTF-8;0;1;1;%2Fhome%2Ffesmifhsofhp%2Frubik_solver%2Fsrc%2Fmain%2Fjava%2Fpcgod01%2Frepeat%2FMain.java;0;4
+current_page=0
+FILE_NAME_0=1249;XML;0;EUTF-8;0;1;1;%2Fhome%2Ffesmifhsofhp%2Frubik_solver%2Fres%2Fmoves.xml;0;4
+FILE_NAME_1=3561;Java;0;EUTF-8;0;1;1;%2Fhome%2Ffesmifhsofhp%2Frubik_solver%2Fsrc%2Fmain%2Fjava%2Fpcgod01%2Frepeat%2FMain.java;0;4
 
 [VTE]
 last_dir=/home/fesmifhsofhp/rubik_solver

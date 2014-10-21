@@ -9,7 +9,9 @@ src/main/java/pcgod01/puzzle/Validator.java
 
 src/main/java/pcgod01/puzzle/cube/Cube.java
 src/main/java/pcgod01/puzzle/cube/CubePiece.java
+src/main/java/pcgod01/puzzle/cube/Builder.java
 
 src/main/java/pcgod01/repeat/Repeater.java
 
 src/main/java/pcgod01/io/XMLLoader.java
+src/main/java/pcgod01/io/PuzzleBuilder.java

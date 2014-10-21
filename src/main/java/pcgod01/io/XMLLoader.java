@@ -28,31 +28,26 @@ import org.xml.sax.SAXException;
 import org.w3c.dom.*;
 
 import main.java.pcgod01.puzzle.Move;
+import main.java.pcgod01.puzzle.Puzzle;
 
 public final class XMLLoader {
-    private final String   path;
-    private Document       doc;
-    private boolean        open;
+    private final String  path;
+    private Document      doc;
+    private boolean       open;
 
     public XMLLoader(String path) {
         this.path = path;
         this.open();
     }
-
-    public Move[] getMoveSequence() {
-        return this.getMoveSequence(0);
-    }
     
     public Move[] getMoveSequence(int index) {
         if (this.doc == null) {
-            System.out.println("doc is null");
             return new Move[0];
         }
         
         NodeList moveSequences = this.doc.getElementsByTagName("move-sequence");
 
-        if (moveSequences.getLength() == 0) {
-            System.out.println("doc has no move-sequence");
+        if (moveSequences.getLength() <= index) {
             return new Move[0];
         }
         
@@ -60,7 +55,6 @@ public final class XMLLoader {
         NodeList moveNodes = moveSequence.getElementsByTagName("move");
 
         if (moveNodes.getLength() == 0) {
-            System.out.println("move-sequence has no move");
             return new Move[0];
         }
 
@@ -74,6 +68,44 @@ public final class XMLLoader {
         }
 
         return moves;
+    }
+
+    public Puzzle getPuzzle(int index) {
+        if (this.doc == null) {
+            return null;
+        }
+
+        NodeList puzzleBuiders = this.doc.getElementsByTagName("puzzle-builder");
+
+        if (puzzleBuiders.getLength() <= index) {
+            System.out.println("no builder element");
+            return null;
+        }
+
+        Element puzzleBuilder = (Element) puzzleBuiders.item(index);
+
+        if (puzzleBuilder.hasAttribute("class")) {
+            String clazz = puzzleBuilder.getAttribute("class");
+            Element args = null;
+
+            NodeList list = puzzleBuilder.getElementsByTagName("args");
+
+            if (list.getLength() > 0) {
+                args = (Element) list.item(0);
+            }
+
+            try {
+                PuzzleBuilder builder = (PuzzleBuilder) Class.forName(clazz).newInstance();
+                return builder.buildFromXML(args);
+            } catch (ClassNotFoundException | InstantiationException |
+                     IllegalAccessException e) {
+                System.out.println("Error");
+                System.out.println(e);
+                return null;
+            }
+        }
+        System.out.println("no class atribute");
+        return null;
     }
 
     public void open() {
