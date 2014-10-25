@@ -31,9 +31,9 @@ import main.java.pcgod01.puzzle.Move;
 import main.java.pcgod01.puzzle.Puzzle;
 
 public final class XMLLoader {
-    private final String  path;
-    private Document      doc;
-    private boolean       open;
+    private final String   path;
+    private       Document doc;
+    private       boolean  open;
 
     public XMLLoader(String path) {
         this.path = path;

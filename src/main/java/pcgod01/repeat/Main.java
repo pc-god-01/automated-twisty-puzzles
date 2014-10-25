@@ -91,11 +91,12 @@ public final class Main {
             args[index] = "../" + args[index];
         }
 
-        XMLLoader loader = new XMLLoader(args[index]);
-        Move[] moves = loader.getMoveSequence(moveIndex);
+        MoveSequence ms = new MoveSequence(args[index]);
+        XMLLoader loader;
+        ms.readXML(moveIndex);
+        Move[] moves = ms.getMoves();
 
         if (!sameFile) {
-            loader.close();
             loader = new XMLLoader(args[index + 1]);
         }
         
