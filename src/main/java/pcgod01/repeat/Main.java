@@ -21,7 +21,6 @@ package main.java.pcgod01.repeat;
 
 import main.java.pcgod01.puzzle.Move;
 import main.java.pcgod01.puzzle.Puzzle;
-import main.java.pcgod01.puzzle.cube.Cube;
 import main.java.pcgod01.io.XMLLoader;
 
 public final class Main {
@@ -88,6 +87,10 @@ public final class Main {
             sameFile = false;
         }
 
+        if (Main.isRelative(args[index])) {
+            args[index] = "../" + args[index];
+        }
+
         XMLLoader loader = new XMLLoader(args[index]);
         Move[] moves = loader.getMoveSequence(moveIndex);
 
@@ -112,5 +115,16 @@ public final class Main {
         System.out.println(repeats);
         loader.close();
         System.exit(0);
+    }
+
+    private static boolean isRelative(String path) {
+        String os = System.getProperty("os.name");
+        os.toLowerCase();
+
+        if (os.startsWith("windows")) {
+            return path.substring(1, 2) != ":";
+        } else {
+            return !path.startsWith("/");
+        }
     }
 }

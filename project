@@ -23,9 +23,13 @@ long_line_behaviour=1
 long_line_column=72
 
 [files]
-current_page=0
-FILE_NAME_0=1249;XML;0;EUTF-8;0;1;1;%2Fhome%2Ffesmifhsofhp%2Frubik_solver%2Fres%2Fmoves.xml;0;4
-FILE_NAME_1=3561;Java;0;EUTF-8;0;1;1;%2Fhome%2Ffesmifhsofhp%2Frubik_solver%2Fsrc%2Fmain%2Fjava%2Fpcgod01%2Frepeat%2FMain.java;0;4
+current_page=4
+FILE_NAME_0=3391;Java;0;EUTF-8;0;1;1;%2Fhome%2Ffesmifhsofhp%2Frubik_solver%2Fsrc%2Fmain%2Fjava%2Fpcgod01%2Fio%2FXMLLoader.java;0;4
+FILE_NAME_1=178;Java;0;EUTF-8;0;1;1;%2Fhome%2Ffesmifhsofhp%2Frubik_solver%2Fsrc%2Fmain%2Fjava%2Fpcgod01%2Fio%2FPuzzleBuilder.java;0;4
+FILE_NAME_2=423;None;0;EUTF-8;0;1;1;%2Fhome%2Ffesmifhsofhp%2Frubik_solver%2Ffile_list;0;4
+FILE_NAME_3=247;Java;0;EUTF-8;0;1;1;%2Fhome%2Ffesmifhsofhp%2Frubik_solver%2Fsrc%2Fmain%2Fjava%2Fpcgod01%2Frepeat%2FRepeater.java;0;4
+FILE_NAME_4=1052;XML;0;EUTF-8;0;1;1;%2Fhome%2Ffesmifhsofhp%2Frubik_solver%2Fres%2Fmoves.xml;0;4
+FILE_NAME_5=240;Java;0;EUTF-8;0;1;1;%2Fhome%2Ffesmifhsofhp%2Frubik_solver%2Fsrc%2Fmain%2Fjava%2Fpcgod01%2Fpuzzle%2Fcube%2FBuilder.java;0;4
 
 [VTE]
 last_dir=/home/fesmifhsofhp/rubik_solver
