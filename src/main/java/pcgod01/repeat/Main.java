@@ -92,29 +92,36 @@ public final class Main {
             args[index] = "../" + args[index];
         }
 
+        int repeats;
         MoveSequence ms = new MoveSequence();
         XMLLoader loader;
         ms.readXML(args[index], moveIndex);
         Move[] moves = ms.getMoves();
 
-        if (!sameFile) {
-            loader = new XMLLoader(args[index + 1]);
-        } else {
-            loader = new XMLLoader(args[index]);
-        }
+        if (ms.getRepeats() == 0) {
+            if (!sameFile) {
+                loader = new XMLLoader(args[index + 1]);
+            } else {
+                loader = new XMLLoader(args[index]);
+            }
         
-        Puzzle puzzle = loader.getPuzzle(puzzleIndex);
+            Puzzle puzzle = loader.getPuzzle(puzzleIndex);
 
-        if (puzzle == null) {
-            System.err.println("failed to load puzzle");
-            System.exit(1);
-        }
+            if (puzzle == null) {
+                System.err.println("failed to load puzzle");
+                System.exit(1);
+            }
         
-        int repeats = Repeater.getRepeats(puzzle, moves);
+            repeats = Repeater.getRepeats(puzzle, moves);
+            
+            loader.close();
+        } else {
+            repeats = ms.getRepeats();
+        }
 
         if (!outPath.isEmpty()) {
-            if (Main.isRelative(outpath)) {
-                outpath = "../" + outpath;
+            if (Main.isRelative(outPath)) {
+                outPath = "../" + outPath;
             }
             
             ms.setRepeats(repeats);
@@ -122,7 +129,6 @@ public final class Main {
         }
         
         System.out.println(repeats);
-        loader.close();
         System.exit(0);
     }
 

@@ -1,44 +1,10 @@
-<root>
-    <puzzle-builder class = "main.java.pcgod01.puzzle.cube.Builder">
-        <args sideLength = "3"/>
-    </puzzle-builder>
-    
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE atp SYSTEM "atp.dtd">
+<atp>
     <move-sequence>
-        <!-- Common finger trick -->
         <move>R</move>
         <move>U</move>
         <move>R'</move>
         <move>U'</move>
     </move-sequence>
-    
-    <move-sequence>
-        <!-- Common finger trick -->
-        <move>R</move>
-        <move>U</move>
-        <move>R'</move>
-        <move>U</move>
-        <move>R</move>
-        <move>U2</move>
-        <move>R'</move>
-    </move-sequence>
-    
-    <move-sequence>
-        <!-- Common finger trick -->
-        <move>R</move>
-        <move>F'</move>
-        <move>R'</move>
-        <move>F</move>
-    </move-sequence>
-
-    <move-sequence>
-        <!-- test -->
-        <move key = "R"/>
-        <move key = "U"/>
-        <move key = "R'"/>
-        <move key = "U'"/>
-        <move key = "R"/>
-        <move key = "U'"/>
-        <move key = "R'"/>
-        <move key = "U"/>
-    </move-sequence>
-</root>
+</atp>

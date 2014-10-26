@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!ELEMENT move-sequence (move* , repeats) >
+<!ELEMENT move (#PCDATA) >
+<!ELEMENT repeats (#PCDATA) >
+<!ELEMENT puzzle-builder (args)* >
+<!ELEMENT args (#PCDATA) >

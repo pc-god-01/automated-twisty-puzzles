@@ -20,7 +20,7 @@
 package main.java.pcgod01.io;
 
 import java.util.ArrayList;
-import java.io.IOException;
+import java.io.*;
 
 import javax.xml.parsers.*;
 import javax.xml.transform.*;
@@ -33,13 +33,20 @@ import org.w3c.dom.*;
 import main.java.pcgod01.puzzle.Move;
 
 public final class MoveSequence implements XMLCompatible {
+    private final static String ATP = "atp";
+    private final static String ROOT = "move-sequence";
+    private final static String MOVE = "move";
+    private final static String REPEAT = "repeats";
+     
     private final ArrayList<Move> moves;
     private       int             repeats;
+    private       String          doctype;
 
     public MoveSequence() {
         this.moves = new ArrayList<Move>();
     }
 
+    @Override
     public boolean readXML(String path, int index) {
         Document dom;
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
@@ -48,13 +55,21 @@ public final class MoveSequence implements XMLCompatible {
             DocumentBuilder builder = factory.newDocumentBuilder();
             dom = builder.parse(path);
 
+            DocumentType doctype = dom.getDoctype();
+
+            if (doctype != null) {
+                this.doctype = doctype.getSystemId();
+            } else {
+                this.doctype = null;
+            }
+
             Element doc = dom.getDocumentElement();
+            Element sequence = (Element) doc.getElementsByTagName(MoveSequence.ROOT).item(index);
 
-            Element sequence = (Element) doc.getElementsByTagName("move-sequence").item(index);
-
-            this.addMoves(sequence);
-            String repeats = MoveSequence.getTagString(sequence, 0, "repeats", "0");
+            String repeats = MoveSequence.getTagString(sequence, 0, MoveSequence.REPEAT, "0");
             this.repeats = Integer.parseInt(repeats);
+            
+            this.readMoves(sequence);
 
             return true;
         } catch (ParserConfigurationException | SAXException | IOException e) {
@@ -63,13 +78,72 @@ public final class MoveSequence implements XMLCompatible {
         }
     }
 
+    @Override
     public boolean writeXML(String path) {
-        // TODO
+        Document dom;
+        Element e = null;
+        
+        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+
+        try {
+            DocumentBuilder builder = factory.newDocumentBuilder();
+            boolean exists = new File(path).exists();
+
+            if (exists) {
+                dom = builder.parse(path);
+            } else {
+                dom = builder.newDocument();
+            }
+
+            Element atp;
+
+            if (exists) {
+                atp = dom.getDocumentElement();
+            } else {
+                atp = dom.createElement(MoveSequence.ATP);
+            }
+            
+            Element root =  dom.createElement(MoveSequence.ROOT);
+            atp.appendChild(root);
+
+            e = dom.createElement(MoveSequence.REPEAT);
+            e.appendChild(dom.createTextNode("" + repeats));
+            root.appendChild(e);
+
+            this.saveMoves(dom, root);
+
+            if (!exists) {
+                dom.appendChild(atp);
+            }
+
+            try {
+                Transformer tr = TransformerFactory.newInstance().newTransformer();
+                tr.setOutputProperty(OutputKeys.INDENT, "yes");
+                tr.setOutputProperty(OutputKeys.METHOD, "xml");
+                tr.setOutputProperty(OutputKeys.ENCODING, "UTF-8");
+                
+                if (this.doctype != null) {
+                    tr.setOutputProperty(OutputKeys.DOCTYPE_SYSTEM, doctype);
+                }
+                
+                tr.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "4");
+
+                tr.transform(new DOMSource(dom),
+                             new StreamResult(new FileOutputStream(path)));
+
+                return true;
+            } catch (TransformerException | FileNotFoundException ex) {
+                System.err.println(ex.getMessage());
+            }
+        } catch (ParserConfigurationException | SAXException | IOException ex) {
+            System.err.println(ex.getMessage());
+        }    
+            
         return false;
     }
 
-    private void addMoves(Element sequence) {
-        NodeList list = sequence.getElementsByTagName("move");
+    private void readMoves(Element sequence) {
+        NodeList list = sequence.getElementsByTagName(MoveSequence.MOVE);
 
         for (int i = 0; i < list.getLength(); i++) {
             Element item = (Element) list.item(i);
@@ -89,8 +163,22 @@ public final class MoveSequence implements XMLCompatible {
         }
     }
 
+    private void saveMoves(Document dom, Element root) {
+        Element e;
+
+        for (Move move : this.moves) {
+            e = dom.createElement(MoveSequence.MOVE);
+            e.appendChild(dom.createTextNode(move.getKey()));
+            root.appendChild(e);
+        }
+    }
+
     public Move[] getMoves() {
         return this.moves.toArray(new Move[this.moves.size()]);
+    }
+
+    public int getRepeats() {
+        return this.repeats;
     }
 
     public void setRepeats(int repeats) {
