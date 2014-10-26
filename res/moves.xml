@@ -5,29 +5,29 @@
     
     <move-sequence>
         <!-- Common finger trick -->
-        <move key = "R"/>
-        <move key = "U"/>
-        <move key = "R'"/>
-        <move key = "U'"/>
+        <move>R</move>
+        <move>U</move>
+        <move>R'</move>
+        <move>U'</move>
     </move-sequence>
     
     <move-sequence>
         <!-- Common finger trick -->
-        <move key = "R"/>
-        <move key = "U"/>
-        <move key = "R'"/>
-        <move key = "U"/>
-        <move key = "R"/>
-        <move key = "U2"/>
-        <move key = "R'"/>
+        <move>R</move>
+        <move>U</move>
+        <move>R'</move>
+        <move>U</move>
+        <move>R</move>
+        <move>U2</move>
+        <move>R'</move>
     </move-sequence>
     
     <move-sequence>
         <!-- Common finger trick -->
-        <move key = "R"/>
-        <move key = "F'"/>
-        <move key = "R'"/>
-        <move key = "F"/>
+        <move>R</move>
+        <move>F'</move>
+        <move>R'</move>
+        <move>F</move>
     </move-sequence>
 
     <move-sequence>

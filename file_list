@@ -17,3 +17,4 @@ src/main/java/pcgod01/io/XMLLoader.java
 src/main/java/pcgod01/io/PuzzleBuilder.java
 src/main/java/pcgod01/io/XMLWriter.java
 src/main/java/pcgod01/io/MoveSequence.java
+src/main/java/pcgod01/io/XMLCompatible.java

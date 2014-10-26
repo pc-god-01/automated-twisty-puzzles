@@ -21,6 +21,7 @@ package main.java.pcgod01.repeat;
 
 import main.java.pcgod01.puzzle.Move;
 import main.java.pcgod01.puzzle.Puzzle;
+import main.java.pcgod01.io.MoveSequence;
 import main.java.pcgod01.io.XMLLoader;
 
 public final class Main {
@@ -91,13 +92,15 @@ public final class Main {
             args[index] = "../" + args[index];
         }
 
-        MoveSequence ms = new MoveSequence(args[index]);
+        MoveSequence ms = new MoveSequence();
         XMLLoader loader;
-        ms.readXML(moveIndex);
+        ms.readXML(args[index], moveIndex);
         Move[] moves = ms.getMoves();
 
         if (!sameFile) {
             loader = new XMLLoader(args[index + 1]);
+        } else {
+            loader = new XMLLoader(args[index]);
         }
         
         Puzzle puzzle = loader.getPuzzle(puzzleIndex);
@@ -110,7 +113,12 @@ public final class Main {
         int repeats = Repeater.getRepeats(puzzle, moves);
 
         if (!outPath.isEmpty()) {
-            // TODO output xml
+            if (Main.isRelative(outpath)) {
+                outpath = "../" + outpath;
+            }
+            
+            ms.setRepeats(repeats);
+            ms.writeXML(outPath);
         }
         
         System.out.println(repeats);

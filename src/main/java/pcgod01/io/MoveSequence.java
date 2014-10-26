@@ -32,38 +32,29 @@ import org.w3c.dom.*;
 
 import main.java.pcgod01.puzzle.Move;
 
-public final class MoveSequence {
-    private final String          path;
+public final class MoveSequence implements XMLCompatible {
     private final ArrayList<Move> moves;
+    private       int             repeats;
 
-    public MoveSequence(String path) {
-        this.path = path;
+    public MoveSequence() {
         this.moves = new ArrayList<Move>();
     }
 
-    public boolean readXML(int index) {
+    public boolean readXML(String path, int index) {
         Document dom;
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 
         try {
             DocumentBuilder builder = factory.newDocumentBuilder();
-            dom = builder.parse(this.path);
+            dom = builder.parse(path);
 
             Element doc = dom.getDocumentElement();
 
             Element sequence = (Element) doc.getElementsByTagName("move-sequence").item(index);
 
-            NodeList list = sequence.getElementsByTagName("move");
-
-            for (int i = 0; i < list.getLength(); i++) {
-                String text = list.item(i).getFirstChild().getNodeValue();
-                
-                if (text == null || text.isEmpty()) {
-                    continue;
-                }
-
-                this.moves.add(new Move(text));
-            }
+            this.addMoves(sequence);
+            String repeats = MoveSequence.getTagString(sequence, 0, "repeats", "0");
+            this.repeats = Integer.parseInt(repeats);
 
             return true;
         } catch (ParserConfigurationException | SAXException | IOException e) {
@@ -72,7 +63,62 @@ public final class MoveSequence {
         }
     }
 
+    public boolean writeXML(String path) {
+        // TODO
+        return false;
+    }
+
+    private void addMoves(Element sequence) {
+        NodeList list = sequence.getElementsByTagName("move");
+
+        for (int i = 0; i < list.getLength(); i++) {
+            Element item = (Element) list.item(i);
+            Text text = (Text) item.getFirstChild();
+            
+            if (text == null) {
+                continue;
+            }
+            
+            String content = text.getNodeValue();
+                
+            if (content == null || content.isEmpty()) {
+                continue;
+            }
+
+            this.moves.add(new Move(content));
+        }
+    }
+
     public Move[] getMoves() {
         return this.moves.toArray(new Move[this.moves.size()]);
+    }
+
+    public void setRepeats(int repeats) {
+        this.repeats = repeats;
+    }
+    
+    public static String getTagString(Element element, int index,
+                                      String tag, String def) {
+        NodeList list = element.getElementsByTagName(tag);
+
+        Element item = (Element) list.item(index);
+
+        if (item == null) {
+            return def;
+        }
+        
+        Text text = (Text) item.getFirstChild();
+            
+        if (text == null) {
+            return def;
+        }
+        
+        String content = text.getNodeValue();
+
+        if (content == null || content.isEmpty()) {
+            return def;
+        }
+
+        return content;
     }
 }
