@@ -6,5 +6,6 @@
         <move>U</move>
         <move>R'</move>
         <move>U'</move>
+        <repeats>6</repeats>
     </move-sequence>
 </atp>

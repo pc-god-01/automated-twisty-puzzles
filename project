@@ -23,10 +23,10 @@ long_line_behaviour=1
 long_line_column=72
 
 [files]
-current_page=1
-FILE_NAME_0=3079;Java;0;EUTF-8;0;1;1;%2Fhome%2Ffesmifhsofhp%2Frubik_solver%2Fsrc%2Fmain%2Fjava%2Fpcgod01%2Frepeat%2FMain.java;0;4
+current_page=2
+FILE_NAME_0=3811;Java;0;EUTF-8;0;1;1;%2Fhome%2Ffesmifhsofhp%2Frubik_solver%2Fsrc%2Fmain%2Fjava%2Fpcgod01%2Frepeat%2FMain.java;0;4
 FILE_NAME_1=2141;Java;0;EUTF-8;0;1;1;%2Fhome%2Ffesmifhsofhp%2Frubik_solver%2Fsrc%2Fmain%2Fjava%2Fpcgod01%2Fio%2FMoveSequence.java;0;4
-FILE_NAME_2=86;XML;0;EUTF-8;0;1;1;%2Fhome%2Ffesmifhsofhp%2Frubik_solver%2Fres%2Fmoves.xml;0;4
+FILE_NAME_2=227;XML;0;EUTF-8;0;1;1;%2Fhome%2Ffesmifhsofhp%2Frubik_solver%2Fres%2Fmoves.xml;0;4
 FILE_NAME_3=38;XML;0;EUTF-8;0;1;1;%2Fhome%2Ffesmifhsofhp%2Frubik_solver%2Fres%2Fatp.dtd;0;4
 
 [VTE]

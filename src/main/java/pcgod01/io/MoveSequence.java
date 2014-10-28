@@ -50,6 +50,7 @@ public final class MoveSequence implements XMLCompatible {
     public boolean readXML(String path, int index) {
         Document dom;
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+        factory.setValidating(true);
 
         try {
             DocumentBuilder builder = factory.newDocumentBuilder();
@@ -84,6 +85,7 @@ public final class MoveSequence implements XMLCompatible {
         Element e = null;
         
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+        factory.setValidating(true);
 
         try {
             DocumentBuilder builder = factory.newDocumentBuilder();
