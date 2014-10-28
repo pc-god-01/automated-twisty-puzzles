@@ -32,12 +32,7 @@ import org.w3c.dom.*;
 
 import main.java.pcgod01.puzzle.Move;
 
-public final class MoveSequence implements XMLCompatible {
-    private final static String ATP = "atp";
-    private final static String ROOT = "move-sequence";
-    private final static String MOVE = "move";
-    private final static String REPEAT = "repeats";
-     
+public final class MoveSequence extends XMLCompatible {
     private final ArrayList<Move> moves;
     private       int             repeats;
     private       String          doctype;
@@ -65,18 +60,26 @@ public final class MoveSequence implements XMLCompatible {
             }
 
             Element doc = dom.getDocumentElement();
-            Element sequence = (Element) doc.getElementsByTagName(MoveSequence.ROOT).item(index);
+            Element sequence = (Element) doc.getElementsByTagName("move-sequence").item(index);
 
-            String repeats = MoveSequence.getTagString(sequence, 0, MoveSequence.REPEAT, "0");
-            this.repeats = Integer.parseInt(repeats);
+            if (sequence == null) {
+                return false;
+            }
+
+            String repeats = this.getTagString(sequence, 0, "repeats");
+            
+            if (repeats != null && !repeats.isEmpty()) {
+                this.repeats = Integer.parseInt(repeats);
+            }
             
             this.readMoves(sequence);
 
             return true;
         } catch (ParserConfigurationException | SAXException | IOException e) {
             System.err.println(e.getMessage());
-            return false;
         }
+
+        return false;
     }
 
     @Override
@@ -102,15 +105,17 @@ public final class MoveSequence implements XMLCompatible {
             if (exists) {
                 atp = dom.getDocumentElement();
             } else {
-                atp = dom.createElement(MoveSequence.ATP);
+                atp = dom.createElement("atp");
             }
             
-            Element root =  dom.createElement(MoveSequence.ROOT);
+            Element root =  dom.createElement("move-sequence");
             atp.appendChild(root);
 
-            e = dom.createElement(MoveSequence.REPEAT);
-            e.appendChild(dom.createTextNode("" + repeats));
-            root.appendChild(e);
+            if (this.repeats > 0) {
+                e = dom.createElement("repeats");
+                e.appendChild(dom.createTextNode("" + repeats));
+                root.appendChild(e);
+            }
 
             this.saveMoves(dom, root);
 
@@ -145,7 +150,7 @@ public final class MoveSequence implements XMLCompatible {
     }
 
     private void readMoves(Element sequence) {
-        NodeList list = sequence.getElementsByTagName(MoveSequence.MOVE);
+        NodeList list = sequence.getElementsByTagName("move");
 
         for (int i = 0; i < list.getLength(); i++) {
             Element item = (Element) list.item(i);
@@ -169,7 +174,7 @@ public final class MoveSequence implements XMLCompatible {
         Element e;
 
         for (Move move : this.moves) {
-            e = dom.createElement(MoveSequence.MOVE);
+            e = dom.createElement("move");
             e.appendChild(dom.createTextNode(move.getKey()));
             root.appendChild(e);
         }
@@ -185,30 +190,5 @@ public final class MoveSequence implements XMLCompatible {
 
     public void setRepeats(int repeats) {
         this.repeats = repeats;
-    }
-    
-    public static String getTagString(Element element, int index,
-                                      String tag, String def) {
-        NodeList list = element.getElementsByTagName(tag);
-
-        Element item = (Element) list.item(index);
-
-        if (item == null) {
-            return def;
-        }
-        
-        Text text = (Text) item.getFirstChild();
-            
-        if (text == null) {
-            return def;
-        }
-        
-        String content = text.getNodeValue();
-
-        if (content == null || content.isEmpty()) {
-            return def;
-        }
-
-        return content;
     }
 }

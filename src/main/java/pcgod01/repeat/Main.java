@@ -21,8 +21,7 @@ package main.java.pcgod01.repeat;
 
 import main.java.pcgod01.puzzle.Move;
 import main.java.pcgod01.puzzle.Puzzle;
-import main.java.pcgod01.io.MoveSequence;
-import main.java.pcgod01.io.XMLLoader;
+import main.java.pcgod01.io.*;
 
 public final class Main {
     private final static String USAGE = "Usage: repeat <options> <move-file> [puzzle-file]\n"
@@ -88,36 +87,43 @@ public final class Main {
             sameFile = false;
         }
 
-        if (Main.isRelative(args[index])) {
-            args[index] = "../" + args[index];
-        }
-
         int repeats;
-        MoveSequence ms = new MoveSequence();
-        XMLLoader loader;
-        ms.readXML(args[index], moveIndex);
-        Move[] moves = ms.getMoves();
+        String path = args[index];
+        String realPath = path;
 
-        if (ms.getRepeats() == 0) {
-            if (!sameFile) {
-                loader = new XMLLoader(args[index + 1]);
-            } else {
-                loader = new XMLLoader(args[index]);
-            }
-        
-            Puzzle puzzle = loader.getPuzzle(puzzleIndex);
-
-            if (puzzle == null) {
-                System.err.println("failed to load puzzle");
-                System.exit(1);
-            }
-        
-            repeats = Repeater.getRepeats(puzzle, moves);
-            
-            loader.close();
-        } else {
-            repeats = ms.getRepeats();
+        if (Main.isRelative(path)) {
+            realPath = "../" + path;
         }
+        
+        MoveSequence ms = new MoveSequence();
+        PuzzleBuilder pb = new PuzzleBuilder();
+        boolean success = ms.readXML(realPath, moveIndex);
+
+        if (!success) {
+            System.err.println("Failed to read file " + path);
+            System.exit(1);
+        }
+
+        if (!sameFile) {
+            path = args[index + 1];
+            realPath = path;
+
+            if (Main.isRelative(path)) {
+                realPath = "../" + path;
+            }
+        }
+            
+        success = pb.readXML(realPath, puzzleIndex);
+
+        if (!success) {
+            System.err.println("Failed to read file " + path);
+            System.exit(1);
+        }
+
+        Move[] moves = ms.getMoves();
+        Puzzle puzzle = pb.getPuzzle();
+        repeats = Repeater.getRepeats(puzzle, moves);
+        
 
         if (!outPath.isEmpty()) {
             if (Main.isRelative(outPath)) {
@@ -126,6 +132,7 @@ public final class Main {
             
             ms.setRepeats(repeats);
             ms.writeXML(outPath);
+            pb.writeXML(outPath);
         }
         
         System.out.println(repeats);

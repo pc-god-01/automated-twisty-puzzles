@@ -21,7 +21,31 @@ package main.java.pcgod01.io;
 
 import org.w3c.dom.*;
 
-public interface XMLCompatible {
-    public boolean readXML(String path, int index);
-    public boolean writeXML(String path);
+public abstract class XMLCompatible {
+    public abstract boolean readXML(String path, int index);
+    public abstract boolean writeXML(String path);
+
+    protected final String getTagString(Element e, int i, String tag) {
+        NodeList list = e.getElementsByTagName(tag);
+
+        Element item = (Element) list.item(i);
+
+        if (item == null) {
+            return "";
+        }
+        
+        Text text = (Text) item.getFirstChild();
+            
+        if (text == null) {
+            return "";
+        }
+        
+        String content = text.getNodeValue();
+
+        if (content == null || content.isEmpty()) {
+            return "";
+        }
+
+        return content;
+    }
 }

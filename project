@@ -23,11 +23,18 @@ long_line_behaviour=1
 long_line_column=72
 
 [files]
-current_page=2
-FILE_NAME_0=3811;Java;0;EUTF-8;0;1;1;%2Fhome%2Ffesmifhsofhp%2Frubik_solver%2Fsrc%2Fmain%2Fjava%2Fpcgod01%2Frepeat%2FMain.java;0;4
-FILE_NAME_1=2141;Java;0;EUTF-8;0;1;1;%2Fhome%2Ffesmifhsofhp%2Frubik_solver%2Fsrc%2Fmain%2Fjava%2Fpcgod01%2Fio%2FMoveSequence.java;0;4
-FILE_NAME_2=227;XML;0;EUTF-8;0;1;1;%2Fhome%2Ffesmifhsofhp%2Frubik_solver%2Fres%2Fmoves.xml;0;4
-FILE_NAME_3=38;XML;0;EUTF-8;0;1;1;%2Fhome%2Ffesmifhsofhp%2Frubik_solver%2Fres%2Fatp.dtd;0;4
+current_page=1
+FILE_NAME_0=992;Java;0;EUTF-8;0;1;1;%2Fhome%2Ffesmifhsofhp%2Frubik_solver%2Fsrc%2Fmain%2Fjava%2Fpcgod01%2Frepeat%2FMain.java;0;4
+FILE_NAME_1=3299;Java;0;EUTF-8;0;1;1;%2Fhome%2Ffesmifhsofhp%2Frubik_solver%2Fsrc%2Fmain%2Fjava%2Fpcgod01%2Fio%2FMoveSequence.java;0;4
+FILE_NAME_2=215;XML;0;EUTF-8;0;1;1;%2Fhome%2Ffesmifhsofhp%2Frubik_solver%2Fres%2Fmoves.xml;0;4
+FILE_NAME_3=269;XML;0;EUTF-8;0;1;1;%2Fhome%2Ffesmifhsofhp%2Frubik_solver%2Fres%2Fatp.dtd;0;4
+FILE_NAME_4=2615;Java;0;EUTF-8;0;1;1;%2Fhome%2Ffesmifhsofhp%2Frubik_solver%2Fsrc%2Fmain%2Fjava%2Fpcgod01%2Fio%2FPuzzleBuilder.java;0;4
+FILE_NAME_5=0;Java;0;EUTF-8;0;1;1;%2Fhome%2Ffesmifhsofhp%2Frubik_solver%2Fsrc%2Fmain%2Fjava%2Fpcgod01%2Fio%2FXMLCompatible.java;0;4
+FILE_NAME_6=906;Java;0;EUTF-8;0;1;1;%2Fhome%2Ffesmifhsofhp%2Frubik_solver%2Fsrc%2Fmain%2Fjava%2Fpcgod01%2Fpuzzle%2FPuzzle.java;0;4
+FILE_NAME_7=0;Java;0;EUTF-8;0;1;1;%2Fhome%2Ffesmifhsofhp%2Frubik_solver%2Fsrc%2Fmain%2Fjava%2Fpcgod01%2Frepeat%2FRepeater.java;0;4
+FILE_NAME_8=465;None;0;EUTF-8;0;1;1;%2Fhome%2Ffesmifhsofhp%2Frubik_solver%2Ffile_list;0;4
+FILE_NAME_9=4686;Java;0;EUTF-8;0;1;1;%2Fhome%2Ffesmifhsofhp%2Frubik_solver%2Fsrc%2Fmain%2Fjava%2Fpcgod01%2Fpuzzle%2Fcube%2FCube.java;0;4
+FILE_NAME_10=3038;Java;0;EUTF-8;0;1;1;%2Fhome%2Ffesmifhsofhp%2Frubik_solver%2Fsrc%2Fmain%2Fjava%2Fpcgod01%2Fio%2FXMLLoader.java;0;4
 
 [VTE]
 last_dir=/home/fesmifhsofhp/rubik_solver
@@ -37,7 +44,7 @@ EX_00_LB=_Execute
 EX_00_CM=java "main/java/pcgod01/repeat/Main"
 EX_00_WD=%p/out
 JavaFT_00_LB=_Compile
-JavaFT_00_CM=javac -d out @file_list
+JavaFT_00_CM=javac -Xlint:unchecked -d out @file_list
 JavaFT_00_WD=%p
 filetypes=Java;
 NF_00_LB=_Make

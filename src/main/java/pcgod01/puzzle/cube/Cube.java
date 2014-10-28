@@ -19,8 +19,10 @@
  */
 package main.java.pcgod01.puzzle.cube;
 
-import main.java.pcgod01.puzzle.*;
 import java.util.Arrays;
+import java.util.Map;
+
+import main.java.pcgod01.puzzle.*;
 
 public final class Cube extends Puzzle implements Cloneable {
     private final static Validator VALIDATOR;
@@ -31,8 +33,8 @@ public final class Cube extends Puzzle implements Cloneable {
     private final static Color     WHITE  = new Color("white");
     private final static Color     YELLOW = new Color("yellow");
 
-    private final int         sideLength;
-    private       Piece[][][] cube;
+    private int         sideLength;
+    private Piece[][][] cube;
     
     static {
         VALIDATOR = new Validator();
@@ -57,6 +59,10 @@ public final class Cube extends Puzzle implements Cloneable {
         for (String name : moveNames) {
             VALIDATOR.addMove(new Move(name));
         }
+    }
+
+    public Cube() {
+        super();
     }
  
     public Cube(int sideLength) {
@@ -113,6 +119,14 @@ public final class Cube extends Puzzle implements Cloneable {
             return this.rotateDown(slices, turns);
         }
       
+        return this;
+    }
+
+    @Override
+    public Puzzle setProperties(Map<String, String> properties) {
+        this.sideLength = Integer.parseInt(properties.get("side-length"));
+
+        this.initPieces();
         return this;
     }
 

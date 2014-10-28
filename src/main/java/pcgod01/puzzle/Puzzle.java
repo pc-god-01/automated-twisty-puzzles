@@ -17,7 +17,9 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
- package main.java.pcgod01.puzzle;
+package main.java.pcgod01.puzzle;
+
+import java.util.Map;
 
 /**
  * A twisty puzzle that can be fully manipulated.
@@ -35,6 +37,14 @@ public abstract class Puzzle implements Cloneable {
      * @throws IllegalArgumentException if move is invalid
      */
     public abstract Puzzle applyMove(Move move);
+    
+    /**
+     * Sets the properties of a puzzle.
+     *
+     * @param properties the properties of the puzzle
+     * @return the puzzle with the applied properties
+     */
+    public abstract Puzzle setProperties(Map<String, String> properties);
 
     /**
      * Returns a deep-clone of the puzzle.

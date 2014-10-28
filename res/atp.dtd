@@ -3,5 +3,6 @@
 <!ELEMENT move-sequence ((move)* , (repeats)?) >
 <!ELEMENT move (#PCDATA) >
 <!ELEMENT repeats (#PCDATA) >
-<!ELEMENT puzzle-builder (args)* >
-<!ELEMENT args (#PCDATA | args)* >
+<!ELEMENT puzzle-builder ((class) , (args)*) >
+<!ELEMENT class (#PCDATA) >
+<!ELEMENT args (#PCDATA) >
