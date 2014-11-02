@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="description" content="Automated Twisty Puzzles : ">
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>Automated Twisty Puzzles</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/pc-god-01/automated-twisty-puzzles">View on GitHub</a>
+
+          <h1 id="project_title">Automated Twisty Puzzles</h1>
+          <h2 id="project_tagline"></h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/pc-god-01/automated-twisty-puzzles/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/pc-god-01/automated-twisty-puzzles/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1>
+<a name="automated-twisty-puzzles" class="anchor" href="#automated-twisty-puzzles"><span class="octicon octicon-link"></span></a>Automated Twisty Puzzles</h1>
+
+<p>Automated Twisty Puzzles (ATP) is a project that allows you to virtually do anything you want to a twisty puzzle.</p>
+
+<p>Currently, we are working on two sub-projects:</p>
+
+<ul>
+<li>solve</li>
+<li>repeat</li>
+</ul>
+
+<p>The project is made mostly for linux, but is easily able to expand to other platforms.</p>
+
+<h2>
+<a name="solve" class="anchor" href="#solve"><span class="octicon octicon-link"></span></a>solve</h2>
+
+<p>solve is a command-line script that takes any compatible xml file and produces another which contains the moves required to solve it.</p>
+
+<p>Currently, very little work has gone into this aspect, with more emphasis placed on repeat.</p>
+
+<h2>
+<a name="repeat" class="anchor" href="#repeat"><span class="octicon octicon-link"></span></a>repeat</h2>
+
+<p>repeat is a simple command-line script, taking at least one compatible xml file. This xml file contains the sequence of moves to apply, and, if another isn't specified, the required puzzle builder. The program then outputs the number of times the move sequence needs to be repeated to return to the original.</p>
+
+<p>Currently, to run this script, enter the following in your shell from the root project directory.</p>
+
+<pre><code>. repeat.sh [options] &lt;move-file&gt; [puzzle-file]
+</code></pre>
+
+<p>For a full list of options, run the following command.</p>
+
+<pre><code>. repeat.sh -h
+</code></pre>
+
+<p>This aspect is very near completion, with only minor improvements to be made.</p>
+
+<h1>
+<a name="xml-syntax" class="anchor" href="#xml-syntax"><span class="octicon octicon-link"></span></a>XML Syntax</h1>
+
+<p>The xml files that contain the data the programs require to function. There are currently two main structures.</p>
+
+<h2>
+<a name="move-sequence" class="anchor" href="#move-sequence"><span class="octicon octicon-link"></span></a>move-sequence</h2>
+
+<p>The <code>&lt;move-sequence&gt;</code> tag is used to delimit a sequence of moves. From this element, only <code>&lt;move&gt;</code> tags will be read. A move tag contains one attribute, the key. The key is the move to be used. For example,</p>
+
+<pre><code>&lt;move-sequence&gt;
+    &lt;move key = "R"/&gt;
+    &lt;move key = "U"/&gt;
+&lt;/move-sequence&gt;
+</code></pre>
+
+<p>will apply the moves 'R' and 'U', in that order.</p>
+
+<h2>
+<a name="puzzle-builder" class="anchor" href="#puzzle-builder"><span class="octicon octicon-link"></span></a>puzzle-builder</h2>
+
+<p>The <code>&lt;puzzle-builder&gt;</code> tag is used to create puzzles. The tag <em>must</em> have a class attribute, or will otherwise be ignored. The class attribute is the binary name of the puzzle builder. It can also optionally contain an <code>&lt;args&gt;</code> tag. This is the arguments for the puzzle builder. This is interpreted differently for every builder.</p>
+
+<p>The following is an example of a puzzle builder for a 3x3x3 cube.</p>
+
+<pre><code>&lt;puzzle-builder class = "main.java.pcgod01.puzzle.cube.Builder"&gt;
+    &lt;args sideLength = "3"/&gt;
+&lt;/puzzle-builder&gt;
+</code></pre>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Automated Twisty Puzzles maintained by <a href="https://github.com/pc-god-01">pc-god-01</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
