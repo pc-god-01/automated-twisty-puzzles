@@ -91,7 +91,7 @@ public final class Main {
         String path = args[index];
         String realPath = path;
 
-        if (Main.isRelative(path)) {
+        if (XMLCompatible.isRelative(path)) {
             realPath = "../" + path;
         }
         
@@ -108,7 +108,7 @@ public final class Main {
             path = args[index + 1];
             realPath = path;
 
-            if (Main.isRelative(path)) {
+            if (XMLCompatible.isRelative(path)) {
                 realPath = "../" + path;
             }
         }
@@ -126,7 +126,7 @@ public final class Main {
         
 
         if (!outPath.isEmpty()) {
-            if (Main.isRelative(outPath)) {
+            if (XMLCompatible.isRelative(outPath)) {
                 outPath = "../" + outPath;
             }
             
@@ -137,16 +137,5 @@ public final class Main {
         
         System.out.println(repeats);
         System.exit(0);
-    }
-
-    private static boolean isRelative(String path) {
-        String os = System.getProperty("os.name");
-        os.toLowerCase();
-
-        if (os.startsWith("windows")) {
-            return path.substring(1, 2) != ":";
-        } else {
-            return !path.startsWith("/");
-        }
     }
 }

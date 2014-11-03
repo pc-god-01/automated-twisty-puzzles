@@ -33,57 +33,35 @@ import org.w3c.dom.*;
 import main.java.pcgod01.puzzle.Move;
 
 public final class MoveSequence extends XMLCompatible {
-    private final ArrayList<Move> moves;
     private       int             repeats;
     private       String          doctype;
+    private final ArrayList<Move> moves = new ArrayList<Move>();
 
-    public MoveSequence() {
-        this.moves = new ArrayList<Move>();
-    }
-
-    @Override
-    public boolean readXML(String path, int index) {
-        Document dom;
-        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-        factory.setValidating(true);
-
-        try {
-            DocumentBuilder builder = factory.newDocumentBuilder();
-            dom = builder.parse(path);
-
-            DocumentType doctype = dom.getDoctype();
-
-            if (doctype != null) {
-                this.doctype = doctype.getSystemId();
-            } else {
-                this.doctype = null;
-            }
-
-            Element doc = dom.getDocumentElement();
-            Element sequence = (Element) doc.getElementsByTagName("move-sequence").item(index);
-
-            if (sequence == null) {
-                return false;
-            }
-
-            String repeats = this.getTagString(sequence, 0, "repeats");
-            
-            if (repeats != null && !repeats.isEmpty()) {
-                this.repeats = Integer.parseInt(repeats);
-            }
-            
-            this.readMoves(sequence);
-
-            return true;
-        } catch (ParserConfigurationException | SAXException | IOException e) {
-            System.err.println(e.getMessage());
-        }
-
+    public boolean writeXML(String path) {
         return false;
     }
 
     @Override
-    public boolean writeXML(String path) {
+    protected boolean doReadXML(Element doc, int index) {
+        Element sequence = (Element) doc.getElementsByTagName("move-sequence").item(index);
+
+        if (sequence == null) {
+            return false;
+        }
+
+        String repeats = this.getTagString(sequence, 0, "repeats");
+            
+        if (!repeats.isEmpty()) {
+            this.repeats = Integer.parseInt(repeats);
+        }
+            
+        this.readMoves(sequence);
+
+        return true;
+    }
+
+    @Override
+    protected boolean doWriteXML(String path) {
         Document dom;
         Element e = null;
         

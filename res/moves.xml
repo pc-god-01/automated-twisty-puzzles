@@ -6,10 +6,11 @@
         <move>U</move>
         <move>R'</move>
         <move>U'</move>
+        <repeats>6</repeats>
     </move-sequence>
 
     <puzzle-builder>
-        <class>main.java.pcgod01.puzzle.cube.Cube</class>
+            <class>main.java.pcgod01.puzzle.cube.Cube</class>
         <args>side-length:3</args>
     </puzzle-builder>
 </atp>

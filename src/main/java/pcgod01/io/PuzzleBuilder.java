@@ -38,25 +38,13 @@ public class PuzzleBuilder extends XMLCompatible {
     private       String              doctype;
     private       Puzzle              puzzle;
     private final Map<String, String> args = new HashMap<>();
+
+    public boolean writeXML(String path) {
+        return false;
+    }
     
-    public boolean readXML(String path, int index) {
-        Document dom;
-        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-        factory.setValidating(true);
-
+    public boolean doReadXML(Element doc, int index) {
         try {
-            DocumentBuilder db = factory.newDocumentBuilder();
-            dom = db.parse(path);
-
-            DocumentType doctype = dom.getDoctype();
-
-            if (doctype != null) {
-                this.doctype = doctype.getSystemId();
-            } else {
-                this.doctype = null;
-            }
-
-            Element doc = dom.getDocumentElement();
             Element builder = (Element) doc.getElementsByTagName("puzzle-builder").item(index);
 
             if (builder == null) {
@@ -72,16 +60,15 @@ public class PuzzleBuilder extends XMLCompatible {
             this.puzzle = clazz.setProperties(args);
             
             return true;
-        } catch (ParserConfigurationException | SAXException |
-                 IOException | ClassNotFoundException |
-                 InstantiationException | IllegalAccessException e) {
+        } catch (ClassNotFoundException | InstantiationException |
+                 IllegalAccessException e) {
             System.err.println(e.getMessage());
         }
 
         return false;
     }
 
-    public boolean writeXML(String path) {
+    public boolean doWriteXML(String path) {
         return false;
     }
 

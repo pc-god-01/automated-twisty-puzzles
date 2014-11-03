@@ -19,10 +19,65 @@
  */
 package main.java.pcgod01.io;
 
+import java.io.IOException;
+import java.io.File;
+
+import javax.xml.parsers.*;
+import javax.xml.transform.*;
+import javax.xml.transform.dom.*;
+import javax.xml.transform.stream.*;
+
+import org.xml.sax.*;
 import org.w3c.dom.*;
 
 public abstract class XMLCompatible {
-    public abstract boolean readXML(String path, int index);
+    private String doctype = "";
+    
+    protected abstract boolean doReadXML(Element doc, int index);
+    protected abstract boolean doWriteXML(String path);
+    
+    public boolean readXML(String path, int index) {
+        Document dom;
+        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+        factory.setValidating(true);
+
+        try {
+            DocumentBuilder builder = factory.newDocumentBuilder();
+            dom = builder.parse(path);
+
+            DocumentType doctype = dom.getDoctype();
+
+            if (doctype != null) {
+                String doctypeString = doctype.getSystemId();
+                File doctypeFile;
+                
+                if (XMLCompatible.isRelative(doctypeString)) {
+                    File xml = new File(path);
+                    String name = xml.getName();
+                    doctypeFile = new File(path.split(name)[0] + doctypeString);
+                } else {
+                    doctypeFile = new File(doctypeString);
+                }
+
+                if (!doctypeFile.exists()) {
+                    return false;
+                }
+
+                this.doctype = doctypeString;
+            } else {
+                return false;
+            }
+
+            Element doc = dom.getDocumentElement();
+            
+            return this.doReadXML(doc, index);
+        } catch (ParserConfigurationException | SAXException | IOException e) {
+            System.err.println(e.getMessage());
+        }
+
+        return false;
+    }
+            
     public abstract boolean writeXML(String path);
 
     protected final String getTagString(Element e, int i, String tag) {
@@ -47,5 +102,16 @@ public abstract class XMLCompatible {
         }
 
         return content;
+    }
+
+    public static boolean isRelative(String path) {
+        String os = System.getProperty("os.name");
+        os.toLowerCase();
+
+        if (os.startsWith("windows")) {
+            return path.substring(1, 2) != ":";
+        } else {
+            return !path.startsWith("/");
+        }
     }
 }
